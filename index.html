@@ -3,33 +3,57 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="styles.css">
-    <title></title>
+    <title>WHICH LUNA <3</title>
   </head>
   <body>
+    <!-- FIRST PAGE -->
     <nav>
-      <button id='nav-btn'>
-        btn
-      </button>
+      <button id='nav-btn'></button>
       <header>
         <h1>WHICH LUNA</h1>
       </header>
     </nav>
-    <main>
 
-        <div class='player-container' id='player1-container'>
-          <input class='input-name' />
-          <p>PLAYER 1</p>
+  <div class='whole-page-for-styling'>
+    <section class='first-page'>
+        <div class='player-container player1-container'>
+          <p class='error-msg hide-msg'>Luna would like you to enter your name, please.</p>
+          <input class='input-name player1-name-input' maxlength='32' />
+          <p class >PLAYER 1</p>
         </div>
-
-        <div class='player-container' id='player2-container'>
-          <input class='input-name' />
+        <div class='player-container player2-container'>
+          <input class='input-name player2-name-input' maxlength='32' />
           <p>PLAYER 2</p>
         </div>
-
         <button id='play-game-btn'>
           PLAY GAME
         </button>
+    </section>
 
-    </main>
+<!-- SECOND PAGE -->
+    <!-- <nav>
+      <button id='nav-btn'></button>
+      <header>
+        <h1>WHICH LUNA</h1>
+      </header>
+    </nav> -->
+    <section class='rule-page'>
+      <section class='rules-text'>
+        <div><h1>WELCOME <h1 class='player1-name'>PLACEHOLDER</h1><h1> AND </h1><h1 class='player2-name'>PLACEHOLDER</h1><h1>!</h1></h1></div>
+        <br>
+        <p>The goal of the game is to find all 5 pairs of cards as quickly as possible. The player that finds the greatest numbers of pairs, wins.</p>
+        <br>
+        <p>To begin playing, the player whose name is highlighted can click any card in the card pile. It will flip over and reveal a picture of  Beyonce. Click another card. If they match, they will disappear and you will have completed a match! If they don't, you'll have three seconds to look at them before they flip back over. Then it's time for the other player to try!</p>
+        <br>
+        <p>After you play, you'll see the name of the final winner and how long it took to win the game.</p>
+        <button id='play-game-btn'>
+          PLAY GAME
+        </button>
+      </section>
+
+    </section>
+  </div>
+
   </body>
+  <script src="main.js"></script>
 </html>
