@@ -1,0 +1,128 @@
+
+.clearfix:after {
+    content: ' ';
+    display: table;
+    clear: both;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 1px solid red;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+nav {
+  height: 75px;
+}
+
+#nav-btn {
+  background: url('images/nav-button.png') no-repeat;
+  float: left;
+  height: 7em;
+  width: 7em;
+  background-size: cover;
+}
+
+header {
+  text-align: center;
+  padding: 25px;
+}
+
+h1 {
+  display: inline;
+  font-size: 2.5em;
+  margin-bottom: 1em;
+}
+
+.first-page {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-columns: 1fr 1.5fr .5fr 1.5fr 1fr;
+  grid-template-rows: 3fr 1.5fr 1.2fr 1fr 3fr;
+  grid-template-areas:
+    ". . . . ."
+    ". player1 . player2 ."
+    ". . . . ."
+    ". playgame playgame playgame ."
+    ". . . . .";
+  background: url('images/background.jpg') center center;
+  background-size: cover;
+  /* position: absolute; */
+}
+
+.player-container {
+  display: inline;
+}
+
+.player1-container {
+  grid-area: player1;
+}
+
+.player2-container {
+  grid-area: player2;
+}
+
+.hide-msg {
+  display: none;
+}
+
+.error-msg {
+  font-size: 1em;
+}
+
+#play-game-btn {
+  grid-area: playgame;
+  height: 50px;
+  background-color: #000;
+  color: #fff;
+  font-size: 1.25em;
+  margin-top: 3em;
+}
+
+.input-name {
+  width: 100%;
+  height: 40px;
+  font-size: 1.5em;
+}
+
+p {
+  font-size: 1.5em;
+}
+
+/* SECOND SCREEN */
+
+.rule-page {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 3fr 1.5fr 1.2fr 1fr 3fr;
+  grid-template-areas:
+    " . text . ";
+  background: url('images/background.jpg') center center;
+  background-size: cover;
+  /* position: absolute; */
+}
+
+.rules-text {
+  margin-top: 15%;
+  grid-area: text;
+  width: 100%;
+}
+
+#play-game-btn {
+  height: 50px;
+  background-color: #000;
+  color: #fff;
+  font-size: 1.25em;
+  margin-top: 3em;
+  width: 100%;
+}
