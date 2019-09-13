@@ -78,7 +78,7 @@ h1 {
   font-size: 1em;
 }
 
-#play-game-btn {
+.play-game-btn {
   grid-area: playgame;
   height: 50px;
   background-color: #000;
@@ -109,7 +109,7 @@ p {
     " . text . ";
   background: url('images/background.jpg') center center;
   background-size: cover;
-  /* position: absolute; */
+  position: absolute;
 }
 
 .rules-text {
@@ -118,7 +118,7 @@ p {
   width: 100%;
 }
 
-#play-game-btn {
+.play-game-btn {
   height: 50px;
   background-color: #000;
   color: #fff;
@@ -126,3 +126,43 @@ p {
   margin-top: 3em;
   width: 100%;
 }
+
+/* THIRD SCREEN */
+.card-page {
+  display: grid;
+  height: 100%;
+  /* width: 100%; */
+  /* grid-template-rows: 1fr; */
+  grid-template-areas:
+    "leftcolumn cards rightcolumn";
+  grid-template-columns: 1fr 3fr 1fr;
+  /* background-size: cover; */
+  /* position: absolute; */
+}
+
+#card-container {
+  grid-area: cards;
+}
+
+.player-column {
+  background-color: #000;
+}
+
+#left-player-column {
+  grid-area: leftcolumn;
+}
+
+#right-player-column {
+  grid-area: rightcolumn;
+}
+
+.card-img {
+  height: 100px;
+  width: 75px;
+}
+
+
+
+/* .hide {
+  display: none;
+} */
