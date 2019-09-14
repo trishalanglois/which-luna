@@ -1,12 +1,11 @@
 class Card {
-  constructor() {
-    this.matchInfo = matchInfo; //what will the matchInfo be?
+  constructor(obj) {
+    this.matchInfo = obj.matchInfo; //img src
     this.matched = false;
+    this.id = obj.id;
 
   }
   match() {
     //return matched cards?
   }
 }
-
-module.exports = Card;

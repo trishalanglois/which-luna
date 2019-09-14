@@ -1,9 +1,9 @@
 class Deck {
-  constructor() {
-    this.cards = [];
-    this.matchedCards = matchedCards; //get matched cards from Card class method match()?
-    this.selectedCards = selectedCards;
-    this.matches = matches;
+  constructor(obj) {
+    this.cards = obj.cards;
+    this.matchedCards = []; //get matched cards from Card class method match()?
+    this.selectedCards = [];
+    this.matches = [];
   }
   shuffle() {
 
@@ -15,5 +15,3 @@ class Deck {
 
   }
 }
-
-module.exports = Deck;
