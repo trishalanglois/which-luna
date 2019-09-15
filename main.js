@@ -1,7 +1,6 @@
 var playGameBtn1 = document.querySelector('.play-game-btn');
 var playGameBtn2 = document.querySelector('#play-game-btn2');
 var rulePage = document.querySelector('.rule-page');
-// var cardContainer = document.querySelector('#card-container');
 var picturesArr = ['images/ears.JPG', 'images/ears.JPG', 'images/clouds.JPG', 'images/clouds.JPG', 'images/snow.JPG', 'images/snow.JPG', 'images/hat.JPG', 'images/hat.JPG', 'images/stick.JPG','images/stick.JPG'];
 var deck = [];
 var allCards = document.querySelectorAll('.card-img');
@@ -10,7 +9,7 @@ playGameBtn1.addEventListener('click', showRulePage);
 playGameBtn2.addEventListener('click', cardPageLoad);
 
 for (var i = 0; i < allCards.length; i++) {
-  allCards[i].addEventListener('click', showPicture);
+  allCards[i].addEventListener('click', clickCard);
 }
 
 function cardPageLoad() {
@@ -48,6 +47,7 @@ function instantiateCardsAndDeck() {
     deckArr.push(card);
   }
   deck = new Deck({cards: deckArr});
+  console.log(deck);
 };
 
 function randomizedPicture() {
@@ -57,29 +57,41 @@ function randomizedPicture() {
   return cardPic;
 };
 
-function showPicture() {
+function clickCard() {
+  // debugger;
   var selectedCardElementId = event.target.dataset.id;
   var selectedCard = deck.cards.find(function(card) {
     return selectedCardElementId === card.id;
   })
-  var cardPic = selectedCard.matchInfo;
-  event.target.src = cardPic;
-  deck.selectedCards.push(selectedCard);
-  if (deck.matches.length === 5) {
-    showCongratulationsMsg();
-  }
-  if (deck.selectedCards.length === 2) {
-    deck.checkSelectedCards();
-    updateGuessedCardsOnDOM();
+
+  // for (var i = 0; deck.selectedCards.length; i++) {
+  if (cardNotAlreadySelected(selectedCardElementId)) {
+    var cardPic = selectedCard.matchInfo;
+    deck.selectedCards.push(selectedCard);
+    event.target.src = cardPic;
+    if (deck.selectedCards.length === 2) {
+      deck.checkSelectedCards();
+      updateGuessedCardsOnDOM();
+    }
+    if (deck.matches.length === 5) {
+      showCongratulationsMsg();
+    }
   }
 };
 
+function cardNotAlreadySelected(selectedCardId) {
+  return !deck.selectedCards.some(function(previousCard) { //return boolean value
+    return previousCard.id === selectedCardId;
+  })
+};
+
+//FIX THIS BUG -- TOGGLING BETWEEN PICTURE AND L IMG
+
+
 
 function updateGuessedCardsOnDOM(event) {
-  console.log(deck);
   if (deck.matchedCards.length === 2) {
     for (var i = 0; i < deck.matchedCards.length; i++) {
-      console.log(deck.matchedCards);
       document.querySelector(`[data-id='${deck.matchedCards[i].id}']`).style.visibility='hidden';
     }
   deck.matchedCards = [];
@@ -87,26 +99,28 @@ function updateGuessedCardsOnDOM(event) {
   var player1Matches = document.querySelector('#player-1-matches');
   player1Matches.innerText = deck.matches.length;
   }
-  // } else {
-  //   event.target.src = 'images/L.jpg'
-    // KEEP THE NEXT TWO LINES -- WILL AUTOMATE THE CARDS TO SHOW L PICTURE AGAIN WITHOUT USER CLICKING
-    // for (var i = 0; i < deck.selectedCards.length; i++) {
-    //   document.querySelector(`[data-id='${deck.selectedCards[i].id}']`).src='images/L.jpg';
-    // }
+  // KEEP THE NEXT TWO LINES -- WILL AUTOMATE THE CARDS TO SHOW L PICTURE AGAIN WITHOUT USER CLICKING
+  // for (var i = 0; i < deck.selectedCards.length; i++) {
+  //   document.querySelector(`[data-id='${deck.selectedCards[i].id}']`).src='images/L.jpg';
+  // }
 
   for (var i = 0; i < deck.selectedCards.length; i++) {
     var cardsWithPicture = document.querySelector(`[data-id='${deck.selectedCards[i].id}']`);
-    console.log(deck.selectedCards);
     cardsWithPicture.addEventListener('click', showL);
     }
   deck.selectedCards = [];
-  // boolean value
-  // true will run function to remove from DOM
-  // false or else will flip back to original img src
 };
 
 function showL(event) {
   event.target.src = 'images/L.jpg'
+};
+
+function toggleImage(event, picture) {
+  if (event.target.src === 'images/L.jpg') {
+    event.target.src = picture;
+  } else {
+    event.target.src = 'images/L.jpg';
+  }
 };
 
 function showCongratulationsMsg () {
