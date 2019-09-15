@@ -8,7 +8,6 @@ var allCards = document.querySelectorAll('.card-img');
 
 playGameBtn1.addEventListener('click', showRulePage);
 playGameBtn2.addEventListener('click', cardPageLoad);
-// cardContainer.addEventListener('click', showPicture);
 
 for (var i = 0; i < allCards.length; i++) {
   allCards[i].addEventListener('click', showPicture);
@@ -49,7 +48,6 @@ function instantiateCardsAndDeck() {
     deckArr.push(card);
   }
   deck = new Deck({cards: deckArr});
-  // console.log(deck);
 };
 
 function randomizedPicture() {
@@ -67,27 +65,21 @@ function showPicture() {
   var cardPic = selectedCard.matchInfo;
   event.target.src = cardPic;
   deck.selectedCards.push(selectedCard);
-  // debugger;
   if (deck.selectedCards.length === 2) {
     deck.checkSelectedCards();
-    // debugger;
-    // updateGuessedCardsOnDOM();
-
-    // if cards match, run function to remove from DOM
-    // else reset both cards back to original src l.jpg
-    // reset clickCardCount
+    updateGuessedCardsOnDOM();
   }
 };
 
 function updateGuessedCardsOnDOM() {
-  // debugger;
   console.log(deck);
   if (deck.matchedCards.length === 2) {
     for (var i = 0; i < deck.matchedCards.length; i++) {
-      document.querySelector(`[data-id='${deck.matchedCards[i].id}']`).hidden='true';
+      document.querySelector(`[data-id='${deck.matchedCards[i].id}']`).style.visibility='hidden';
     }
     deck.matchedCards = [];
-    // innertext of the 'matches this round' on the DOM will be reassigned to deck.matches.length;
+    var player1Matches = document.querySelector('#player-1-matches');
+    player1Matches.innerText = deck.matches.length;
   } else {
     for (var i = 0; i < deck.selectedCards.length; i++) {
       document.querySelector(`[data-id='${deck.selectedCards[i].id}']`).src='images/L.jpg';
