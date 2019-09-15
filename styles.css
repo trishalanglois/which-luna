@@ -201,6 +201,11 @@ p {
   padding: 3%;
 }
 
+.congratulations {
+  font-size: 3em;
+  color: #000;
+}
+
 
 .hide {
   display: none;

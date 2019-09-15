@@ -65,28 +65,50 @@ function showPicture() {
   var cardPic = selectedCard.matchInfo;
   event.target.src = cardPic;
   deck.selectedCards.push(selectedCard);
+  if (deck.matches.length === 5) {
+    showCongratulationsMsg();
+  }
   if (deck.selectedCards.length === 2) {
     deck.checkSelectedCards();
     updateGuessedCardsOnDOM();
   }
 };
 
-function updateGuessedCardsOnDOM() {
+
+function updateGuessedCardsOnDOM(event) {
   console.log(deck);
   if (deck.matchedCards.length === 2) {
     for (var i = 0; i < deck.matchedCards.length; i++) {
+      console.log(deck.matchedCards);
       document.querySelector(`[data-id='${deck.matchedCards[i].id}']`).style.visibility='hidden';
     }
-    deck.matchedCards = [];
-    var player1Matches = document.querySelector('#player-1-matches');
-    player1Matches.innerText = deck.matches.length;
-  } else {
-    for (var i = 0; i < deck.selectedCards.length; i++) {
-      document.querySelector(`[data-id='${deck.selectedCards[i].id}']`).src='images/L.jpg';
-    }
+  deck.matchedCards = [];
+
+  var player1Matches = document.querySelector('#player-1-matches');
+  player1Matches.innerText = deck.matches.length;
   }
+  // } else {
+  //   event.target.src = 'images/L.jpg'
+    // KEEP THE NEXT TWO LINES -- WILL AUTOMATE THE CARDS TO SHOW L PICTURE AGAIN WITHOUT USER CLICKING
+    // for (var i = 0; i < deck.selectedCards.length; i++) {
+    //   document.querySelector(`[data-id='${deck.selectedCards[i].id}']`).src='images/L.jpg';
+    // }
+
+  for (var i = 0; i < deck.selectedCards.length; i++) {
+    var cardsWithPicture = document.querySelector(`[data-id='${deck.selectedCards[i].id}']`);
+    console.log(deck.selectedCards);
+    cardsWithPicture.addEventListener('click', showL);
+    }
   deck.selectedCards = [];
   // boolean value
   // true will run function to remove from DOM
   // false or else will flip back to original img src
+};
+
+function showL(event) {
+  event.target.src = 'images/L.jpg'
+};
+
+function showCongratulationsMsg () {
+  document.querySelector('#congrats-msg').innerHTML = "<p class='congratulations'>congratulations message placeholder until I think of something witty</p>"
 }
