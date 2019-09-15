@@ -3,7 +3,6 @@ var playGameBtn2 = document.querySelector('#play-game-btn2');
 var rulePage = document.querySelector('.rule-page');
 // var cardContainer = document.querySelector('#card-container');
 var picturesArr = ['images/ears.JPG', 'images/ears.JPG', 'images/clouds.JPG', 'images/clouds.JPG', 'images/snow.JPG', 'images/snow.JPG', 'images/hat.JPG', 'images/hat.JPG', 'images/stick.JPG','images/stick.JPG'];
-var clickCardCount = 0;
 var deck = [];
 var allCards = document.querySelectorAll('.card-img');
 
@@ -50,7 +49,7 @@ function instantiateCardsAndDeck() {
     deckArr.push(card);
   }
   deck = new Deck({cards: deckArr});
-  console.log(deck);
+  // console.log(deck);
 };
 
 function randomizedPicture() {
@@ -66,8 +65,36 @@ function showPicture() {
     return selectedCardElementId === card.id;
   })
   var cardPic = selectedCard.matchInfo;
-  if (clickCardCount < 2) {
-    event.target.src = cardPic;
+  event.target.src = cardPic;
+  deck.selectedCards.push(selectedCard);
+  // debugger;
+  if (deck.selectedCards.length === 2) {
+    deck.checkSelectedCards();
+    // debugger;
+    // updateGuessedCardsOnDOM();
+
+    // if cards match, run function to remove from DOM
+    // else reset both cards back to original src l.jpg
+    // reset clickCardCount
   }
-  clickCardCount += 1;
 };
+
+function updateGuessedCardsOnDOM() {
+  // debugger;
+  console.log(deck);
+  if (deck.matchedCards.length === 2) {
+    for (var i = 0; i < deck.matchedCards.length; i++) {
+      document.querySelector(`[data-id='${deck.matchedCards[i].id}']`).hidden='true';
+    }
+    deck.matchedCards = [];
+    // innertext of the 'matches this round' on the DOM will be reassigned to deck.matches.length;
+  } else {
+    for (var i = 0; i < deck.selectedCards.length; i++) {
+      document.querySelector(`[data-id='${deck.selectedCards[i].id}']`).src='images/L.jpg';
+    }
+  }
+  deck.selectedCards = [];
+  // boolean value
+  // true will run function to remove from DOM
+  // false or else will flip back to original img src
+}

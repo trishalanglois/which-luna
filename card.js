@@ -6,6 +6,10 @@ class Card {
 
   }
   match() {
-    //return matched cards?
+    // 2
+    // change matched to true
+    this.matched = true;
+    // run deck.moveToMatched
+    deck.moveToMatched(this);
   }
 }
