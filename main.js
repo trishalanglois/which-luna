@@ -58,7 +58,6 @@ function randomizedPicture() {
 };
 
 function clickCard() {
-  // debugger;
   var selectedCardElementId = event.target.dataset.id;
   var selectedCard = deck.cards.find(function(card) {
     return selectedCardElementId === card.id;
@@ -68,11 +67,20 @@ function clickCard() {
   if (cardNotAlreadySelected(selectedCardElementId)) {
     var cardPic = selectedCard.matchInfo;
     deck.selectedCards.push(selectedCard);
-    event.target.src = cardPic;
+    toggleImage(cardPic);
+    // event.target.src = cardPic; // remove when toggle works?
+
+    // if (event.target.src.match('images/L.jpg')) {
+    //   event.target.src = cardPic;
+    // } else {
+    //   event.target.src = 'images/L.jpg';
+    // }
+
     if (deck.selectedCards.length === 2) {
       deck.checkSelectedCards();
       updateGuessedCardsOnDOM();
     }
+
     if (deck.matches.length === 5) {
       showCongratulationsMsg();
     }
@@ -89,34 +97,29 @@ function cardNotAlreadySelected(selectedCardId) {
 
 
 
-function updateGuessedCardsOnDOM(event) {
+function updateGuessedCardsOnDOM() {
   if (deck.matchedCards.length === 2) {
     for (var i = 0; i < deck.matchedCards.length; i++) {
       document.querySelector(`[data-id='${deck.matchedCards[i].id}']`).style.visibility='hidden';
     }
-  deck.matchedCards = [];
-
-  var player1Matches = document.querySelector('#player-1-matches');
-  player1Matches.innerText = deck.matches.length;
+    deck.matchedCards = [];
+    var player1Matches = document.querySelector('#player-1-matches');
+    player1Matches.innerText = deck.matches.length;
   }
   // KEEP THE NEXT TWO LINES -- WILL AUTOMATE THE CARDS TO SHOW L PICTURE AGAIN WITHOUT USER CLICKING
   // for (var i = 0; i < deck.selectedCards.length; i++) {
   //   document.querySelector(`[data-id='${deck.selectedCards[i].id}']`).src='images/L.jpg';
   // }
 
-  for (var i = 0; i < deck.selectedCards.length; i++) {
-    var cardsWithPicture = document.querySelector(`[data-id='${deck.selectedCards[i].id}']`);
-    cardsWithPicture.addEventListener('click', showL);
-    }
+  // for (var i = 0; i < deck.selectedCards.length; i++) {
+  //   var cardsWithPicture = document.querySelector(`[data-id='${deck.selectedCards[i].id}']`);
+  //   cardsWithPicture.addEventListener('click', showL);
+  //   }
   deck.selectedCards = [];
 };
 
-function showL(event) {
-  event.target.src = 'images/L.jpg'
-};
-
-function toggleImage(event, picture) {
-  if (event.target.src === 'images/L.jpg') {
+function toggleImage(picture) {
+  if (event.target.src.match('images/L.jpg')) {
     event.target.src = picture;
   } else {
     event.target.src = 'images/L.jpg';
