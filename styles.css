@@ -116,7 +116,7 @@ p {
     " . text . ";
   background: url('images/background.jpg') center center;
   background-size: cover;
-  /* position: absolute;  COMMENT THIS BACK IN BEFORE TURNING IN! */
+  position: absolute;
 }
 
 .rules-text {
@@ -213,6 +213,6 @@ p {
 }
 
 
-/* .hide {
+.hide {
   display: none;
-} */
+}

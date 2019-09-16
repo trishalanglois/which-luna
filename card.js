@@ -5,11 +5,8 @@ class Card {
     this.id = obj.id;
 
   }
-  match() {
-    // 2
-    // change matched to true
+  match() { //2
     this.matched = true;
-    // run deck.moveToMatched
     deck.moveToMatched(this);
   }
 }
