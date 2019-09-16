@@ -62,28 +62,34 @@ function clickCard() {
   var selectedCard = deck.cards.find(function(card) {
     return selectedCardElementId === card.id;
   })
+  var cardPic = selectedCard.matchInfo;
 
+  if (deck.selectedCards.length < 2) {
   // for (var i = 0; deck.selectedCards.length; i++) {
-  if (cardNotAlreadySelected(selectedCardElementId)) {
-    var cardPic = selectedCard.matchInfo;
-    deck.selectedCards.push(selectedCard);
+    if (cardNotAlreadySelected(selectedCardElementId)) {
+      deck.selectedCards.push(selectedCard);
+      toggleImage(cardPic);
+      // event.target.src = cardPic; // remove when toggle works?
+
+      // if (event.target.src.match('images/L.jpg')) {
+        //   event.target.src = cardPic;
+        // } else {
+          //   event.target.src = 'images/L.jpg';
+          // }
+
+      if (deck.selectedCards.length === 2) {
+        deck.checkSelectedCards();
+        updateGuessedCardsOnDOM();
+      }
+
+      if (deck.matches.length === 5) {
+        showCongratulationsMsg();
+      }
+    }
+  } else if (!cardNotAlreadySelected(selectedCardElementId)) {
     toggleImage(cardPic);
-    // event.target.src = cardPic; // remove when toggle works?
-
-    // if (event.target.src.match('images/L.jpg')) {
-    //   event.target.src = cardPic;
-    // } else {
-    //   event.target.src = 'images/L.jpg';
-    // }
-
-    if (deck.selectedCards.length === 2) {
-      deck.checkSelectedCards();
-      updateGuessedCardsOnDOM();
-    }
-
-    if (deck.matches.length === 5) {
-      showCongratulationsMsg();
-    }
+    var indexToSplice = deck.selectedCards.indexOf(selectedCard);
+    deck.selectedCards.splice(indexToSplice, 1);
   }
 };
 
@@ -103,6 +109,7 @@ function updateGuessedCardsOnDOM() {
       document.querySelector(`[data-id='${deck.matchedCards[i].id}']`).style.visibility='hidden';
     }
     deck.matchedCards = [];
+    deck.selectedCards = [];
     var player1Matches = document.querySelector('#player-1-matches');
     player1Matches.innerText = deck.matches.length;
   }
@@ -115,7 +122,6 @@ function updateGuessedCardsOnDOM() {
   //   var cardsWithPicture = document.querySelector(`[data-id='${deck.selectedCards[i].id}']`);
   //   cardsWithPicture.addEventListener('click', showL);
   //   }
-  deck.selectedCards = [];
 };
 
 function toggleImage(picture) {
