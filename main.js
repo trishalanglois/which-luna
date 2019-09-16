@@ -1,4 +1,5 @@
 var allCards = document.querySelectorAll('.card-img');
+var cardPage = document.querySelector('.card-page');
 var deck = [];
 var picturesArr = ['images/ears.JPG', 'images/ears.JPG', 'images/clouds.JPG', 'images/clouds.JPG', 'images/snow.JPG', 'images/snow.JPG', 'images/hat.JPG', 'images/hat.JPG', 'images/stick.JPG','images/stick.JPG'];
 var playGameBtn1 = document.querySelector('.play-game-btn');
@@ -41,7 +42,8 @@ function clickCard() {
       updateGuessedCardsOnDOM();
     }
     if (deck.matches.length === 5) {
-      showCongratulationsMsg();
+      // console.log('congrats!');
+      showCongratsPage(); // change to show fourth page
     }
   } else if (!cardNotAlreadySelected(selectedCardElementId)) {
     toggleImage(cardPic);
@@ -73,14 +75,19 @@ function removeCardFromSelectedArr(card) {
 };
 
 function showCardPage() {
-  var cardPage = document.querySelector('.card-page');
   rulePage.classList.add('hide');
   cardPage.classList.remove('hide');
 };
 
-function showCongratulationsMsg () {
-  document.querySelector('#congrats-msg').innerHTML = "<p class='congratulations'>congratulations message placeholder until I think of something witty</p>"
-};
+function showCongratsPage() {
+  var congratsPage = document.querySelector('.congrats-page');
+  cardPage.classList.add('hide');
+  congratsPage.classList.remove('hide');
+}
+
+// function showCongratulationsMsg () {
+//   document.querySelector('#congrats-msg').innerHTML = "<p class='congratulations'>congratulations message placeholder until I think of something witty</p>"
+// };
 
 function showRulePage() {
   var welcomePage = document.querySelector('.first-page');

@@ -207,10 +207,52 @@ p {
   padding: 3%;
 }
 
+
+
+/* FOURTH SCREEN */
+.congrats-page {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-columns: 1fr 1.5fr .5fr 1.5fr 1fr;
+  grid-template-rows: 1fr .5fr .5fr 1fr 1fr;
+  grid-template-areas:
+    ". . . . ."
+    ". congrats congrats congrats ."
+    ". time time time ."
+    ". keep-playing keep-playing keep-playing ."
+    ". new-game . rematch .";
+  background: url('images/background.jpg') center center;
+  background-size: cover;
+  position: absolute;
+}
+
 .congratulations {
+  grid-area: congrats;
   font-size: 3em;
   color: #000;
+  text-align: center;
 }
+
+.time-of-game {
+  grid-area: time;
+  text-align: center;
+  font-weight: bold;
+}
+
+.keep-playing-msg {
+  grid-area: keep-playing;
+  text-align: center;
+}
+
+.new-game-btn {
+  grid-area: new-game;
+}
+
+.rematch-btn {
+  grid-area: rematch;
+}
+
 
 
 .hide {
