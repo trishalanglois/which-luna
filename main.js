@@ -17,18 +17,29 @@ for (var i = 0; i < allCards.length; i++) {
 function cardPageLoad() {
   showCardPage();
   instantiateCardsAndDeck();
-  // startTimer();
+  startTimer();
 };
 
-// function startTimer() {
-//   var startTime = Date.now();
-// }
-//
-// function calculateElapsedTime() {
-//   var endTime = Date.now();
-//   var elapsedTime = startTime - endTime;
-//
-// }
+function startTimer() {
+  var startTime = Date.now();
+}
+
+function calculateElapsedTime() {
+  var endTime = Date.now();
+  var elapsedTime = endTime - startTime;
+  var totalSec = elapsedTime / 1000;
+  var totalMin = Math.round(totalSec / 60);
+  var totalSec = Math.round(totalSec % 60);
+  var elapsedTimeMin = document.querySelector('.elapsed-time-min');
+  var elapsedTimeSec = document.querySelector('.elapsed-time-sec');
+
+  console.log(totalMin, totalSec);
+  elapsedTimeMin.innerHTML = totalMin;
+  elapsedTimeSec.innerHTML = totalSec;
+  // innerHTML1 -> totalMin
+  // innerHTML2 -> totalSec
+
+}
 
 function cardNotAlreadySelected(selectedCardId) {
   return !deck.selectedCards.some(function(previousCard) { //return boolean value
@@ -55,6 +66,7 @@ function clickCard() {
     }
     if (deck.matches.length === 5) {
       showCongratsPage();
+      calculateElapsedTime();
     }
   } else if (!cardNotAlreadySelected(selectedCardElementId)) {
     toggleImage(cardPic);
