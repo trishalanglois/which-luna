@@ -1,10 +1,11 @@
 var allCards = document.querySelectorAll('.card-img');
 var cardPage = document.querySelector('.card-page');
-var deck = [];
+var deck = []; // change this to an instance of the deck class
 var picturesArr = ['images/ears.JPG', 'images/ears.JPG', 'images/clouds.JPG', 'images/clouds.JPG', 'images/snow.JPG', 'images/snow.JPG', 'images/hat.JPG', 'images/hat.JPG', 'images/stick.JPG','images/stick.JPG'];
 var playGameBtn1 = document.querySelector('.play-game-btn');
 var playGameBtn2 = document.querySelector('#play-game-btn2');
 var rulePage = document.querySelector('.rule-page');
+var startTime = Date.now()
 
 playGameBtn1.addEventListener('click', showRulePage);
 playGameBtn2.addEventListener('click', cardPageLoad);
@@ -16,7 +17,18 @@ for (var i = 0; i < allCards.length; i++) {
 function cardPageLoad() {
   showCardPage();
   instantiateCardsAndDeck();
+  // startTimer();
 };
+
+// function startTimer() {
+//   var startTime = Date.now();
+// }
+//
+// function calculateElapsedTime() {
+//   var endTime = Date.now();
+//   var elapsedTime = startTime - endTime;
+//
+// }
 
 function cardNotAlreadySelected(selectedCardId) {
   return !deck.selectedCards.some(function(previousCard) { //return boolean value
@@ -42,8 +54,7 @@ function clickCard() {
       updateGuessedCardsOnDOM();
     }
     if (deck.matches.length === 5) {
-      // console.log('congrats!');
-      showCongratsPage(); // change to show fourth page
+      showCongratsPage();
     }
   } else if (!cardNotAlreadySelected(selectedCardElementId)) {
     toggleImage(cardPic);
@@ -55,19 +66,21 @@ function instantiateCardsAndDeck() {
   var cardsArr = document.querySelectorAll('.card-img');
   var deckArr = [];
   for (var i = 0; i < cardsArr.length; i++) {
-    var card = new Card({id: cardsArr[i].dataset.id, matchInfo: randomizedPicture()});
+    var card = new Card({id: cardsArr[i].dataset.id, matchInfo: picturesArr[i]});
     deckArr.push(card);
   }
+
   deck = new Deck({cards: deckArr});
-  console.log(deck);
+  deck.shuffle(deckArr);
 };
 
-function randomizedPicture() {
-  var randomIndex = Math.floor(Math.random() * picturesArr.length);
-  var cardPic = picturesArr[randomIndex];
-  picturesArr.splice(randomIndex, 1);
-  return cardPic;
-};
+
+function showShuffledCards(array) {
+
+
+  // for each card in deck.shuffled cards, find id
+  // replace
+}
 
 function removeCardFromSelectedArr(card) {
   var indexToSplice = deck.selectedCards.indexOf(card);
@@ -83,11 +96,7 @@ function showCongratsPage() {
   var congratsPage = document.querySelector('.congrats-page');
   cardPage.classList.add('hide');
   congratsPage.classList.remove('hide');
-}
-
-// function showCongratulationsMsg () {
-//   document.querySelector('#congrats-msg').innerHTML = "<p class='congratulations'>congratulations message placeholder until I think of something witty</p>"
-// };
+};
 
 function showRulePage() {
   var welcomePage = document.querySelector('.first-page');
