@@ -6,14 +6,19 @@
     <title>WHICH LUNA <3</title>
   </head>
   <body>
-    <!-- FIRST PAGE -->
     <nav>
       <button id='nav-btn'></button>
-      <header>
+      <header id='which-luna'>
         <h1>WHICH LUNA</h1>
       </header>
+      <aside class='hide winner-bar'>
+        <article class='winner-box'>
+          <p class='player1-name' id='winner-box-name'>NAME</p>
+          <br>
+          <p class='winning-time'>TIME</p>
+        </article>
+      </aside>
     </nav>
-
   <div class='whole-page-for-styling'>
     <section class='first-page'>
       <div class='error-msg-container'>
@@ -31,10 +36,9 @@
           PLAY GAME
         </button>
     </section>
-
     <section class='rule-page hide'>
       <section class='rules-text'>
-        <div><h1>WELCOME <h1 class='player1-name'>PLACEHOLDER</h1><h1> AND </h1><h1 class='player2-name'>PLACEHOLDER</h1><h1>!</h1></h1></div>
+        <div><h1>WELCOME <h1 class='player1-name'>PLACEHOLDER</h1><h1>!</h1></h1></div>
         <br>
         <p>The goal of the game is to find all 5 pairs of cards as quickly as possible. The player that finds the greatest numbers of pairs, wins.</p>
         <br>
@@ -46,7 +50,6 @@
         </button>
       </section>
     </section>
-
       <section class='card-page hide'>
         <aside class='player-column' id='left-player-column'>
           <div class='aside-first-box'>
@@ -99,18 +102,14 @@
           </div>
         </aside>
       </section>
-
       <section class='congrats-page hide'>
         <h1 class='congratulations'>CONGRATULATIONS, <span class='player1-name'>PLACEHOLDER</span>! YOU HAVE WON A LIFETIME SUPPLY OF SNUGGLES AND STINKY KISSES FROM LUNA 😍 </h2>
         <p class='time-of-game'>It took you <span class='elapsed-time-min'>0</span> minutes and <span class='elapsed-time-sec'>0</span> seconds.</p>
         <p class='keep-playing-msg'>Click below to keep playing.</p>
-
         <button class='play-game-btn new-game-btn'>
           NEW GAME
         </button>
       </section>
-
-
     </div>
   </body>
   <script src="main.js"></script>

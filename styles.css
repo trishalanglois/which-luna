@@ -20,6 +20,7 @@ body {
 
 nav {
   height: 75px;
+  /* box-shadow: 0 8px 6px -6px #fff; */
 }
 
 #nav-btn {
@@ -31,9 +32,40 @@ nav {
   background-size: cover;
 }
 
-header {
+#which-luna {
   text-align: center;
   padding: 25px;
+  margin: -2px -2px -20px -2px;
+
+}
+
+.winner-bar {
+  align-items: center;
+  background-color: #000;
+  color: #fff;
+  display: block;
+  display: flex;
+  height: 190px;
+  justify-content: center;
+  margin: 0px;
+  position: absolute;
+  width: 100%;
+  /* z-index: 1; */
+}
+
+.winner-box {
+  border: 3px solid #fff;
+  padding: 3em;
+  border-radius: 30%;
+  text-align: center;
+}
+
+#winner-box-name {
+  font-weight: bold;
+}
+
+.winning-time {
+  font-weight: lighter;
 }
 
 h1 {
@@ -56,7 +88,7 @@ h1 {
     ". . . . .";
   background: url('images/background.jpg') center center;
   background-size: cover;
-  position: absolute;
+  /* position: absolute; */
 }
 
 .error-msg-container {

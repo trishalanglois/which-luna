@@ -1,17 +1,25 @@
 var allCards = document.querySelectorAll('.card-img');
 var cardPage = document.querySelector('.card-page');
-var deck = []; // change this to an instance of the deck class
+var deck = [];
+var elapsedTime = 0;
+var navBtn = document.querySelector('#nav-btn');
+var newGameBtn = document.querySelector('.new-game-btn');
 var picturesArr = ['images/ears.JPG', 'images/ears.JPG', 'images/clouds.JPG', 'images/clouds.JPG', 'images/snow.JPG', 'images/snow.JPG', 'images/hat.JPG', 'images/hat.JPG', 'images/stick.JPG','images/stick.JPG'];
 var playGameBtn1 = document.querySelector('.play-game-btn');
 var playGameBtn2 = document.querySelector('#play-game-btn2');
+var rematchBtn = document.querySelector('.rematch-btn');
 var rulePage = document.querySelector('.rule-page');
 var startTime = Date.now()
-var newGameBtn = document.querySelector('.new-game-btn');
-var rematchBtn = document.querySelector('.rematch-btn');
+
+function getWinnerFromStorage() {
+  if ("winner-array" in localStorage)
+  return JSON.parse(localStorage.getItem("winner-array"));
+}
 
 playGameBtn1.addEventListener('click', showRulePage);
 playGameBtn2.addEventListener('click', cardPageLoad);
 newGameBtn.addEventListener('click', startNewGame);
+navBtn.addEventListener('click', toggleWinnerBar);
 
 for (var i = 0; i < allCards.length; i++) {
   allCards[i].addEventListener('click', clickCard);
@@ -28,20 +36,28 @@ function startNewGame() {
   document.location.reload();
 }
 
+function toggleWinnerBar() {
+  console.log('button test');
+  var winnerBar = document.querySelector('.winner-bar');
+  if (winnerBar.classList.contains('hide')) {
+    winnerBar.classList.remove('hide');
+  } else {
+    winnerBar.classList.add('hide');
+  }
+};
+
 function startTimer() {
   var startTime = Date.now();
 }
 
 function calculateElapsedTime() {
   var endTime = Date.now();
-  var elapsedTime = endTime - startTime;
+  elapsedTime = endTime - startTime;
   var totalSec = elapsedTime / 1000;
   var totalMin = Math.round(totalSec / 60);
   var totalSec = Math.round(totalSec % 60);
   var elapsedTimeMin = document.querySelector('.elapsed-time-min');
   var elapsedTimeSec = document.querySelector('.elapsed-time-sec');
-
-  console.log(totalMin, totalSec);
   elapsedTimeMin.innerHTML = totalMin;
   elapsedTimeSec.innerHTML = totalSec;
 }
@@ -72,6 +88,10 @@ function clickCard() {
     if (deck.matches.length === 5) {
       showCongratsPage();
       calculateElapsedTime();
+      addWinnerToArray();
+      sortWinners();
+      pushWinnersToStorage(winners)
+
     }
   } else if (!cardNotAlreadySelected(selectedCardElementId)) {
     toggleImage(cardPic);
@@ -111,6 +131,26 @@ function showCongratsPage() {
   cardPage.classList.add('hide');
   congratsPage.classList.remove('hide');
 };
+
+var winners = getWinnerFromStorage() || [];
+
+function addWinnerToArray() {
+  var winner = ({name: localStorage.getItem("playerName"), time: elapsedTime});
+  winners.push(winner);
+  console.log(winners);
+}
+
+function sortWinners() {
+  winners.sort(function(a, b) {
+    return a.time - b.time;
+  })
+}
+
+function pushWinnersToStorage(array) {
+  JSON.stringify(localStorage.setItem("winner-array", array));
+}
+// push to storage after array is sorted by time
+
 
 function showRulePage() {
   var welcomePage = document.querySelector('.first-page');
