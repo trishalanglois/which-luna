@@ -180,7 +180,6 @@ p {
   margin-bottom: 10%;
 }
 
-
 .line {
   border: 1px solid #fff;
   margin: 2%;
@@ -211,7 +210,7 @@ p {
 }
 
 #card-3 {
-
+  transform:;
 }
 
 #card-4 {
@@ -243,7 +242,19 @@ p {
 }
 
 .card-flip {
-  transform: rotateY(360deg);
+  animation: card-flip 0.5s;
+}
+
+@keyframes card-flip {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
 }
 
 .card-row {
@@ -251,8 +262,6 @@ p {
   justify-content: space-around;
   padding: 3%;
 }
-
-
 
 /* FOURTH SCREEN */
 .congrats-page {

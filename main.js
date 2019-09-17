@@ -6,9 +6,13 @@ var playGameBtn1 = document.querySelector('.play-game-btn');
 var playGameBtn2 = document.querySelector('#play-game-btn2');
 var rulePage = document.querySelector('.rule-page');
 var startTime = Date.now()
+var newGameBtn = document.querySelector('.new-game-btn');
+var rematchBtn = document.querySelector('.rematch-btn');
 
 playGameBtn1.addEventListener('click', showRulePage);
 playGameBtn2.addEventListener('click', cardPageLoad);
+newGameBtn.addEventListener('click', newGame)
+
 
 for (var i = 0; i < allCards.length; i++) {
   allCards[i].addEventListener('click', clickCard);
@@ -21,6 +25,10 @@ function cardPageLoad() {
   console.log();
   startTimer();
 };
+
+function newGame() {
+  document.location.reload(false);
+}
 
 function startTimer() {
   var startTime = Date.now();
