@@ -12,6 +12,7 @@ class Deck {
     for (var i = 0; i < 10; i++) {
       var randomIndex = Math.floor(Math.random() * this.cards.length); //would be this.cards (in the deck class)
       shuffledCards.push(array.splice(randomIndex, 1)[0]); // would then push to empty array
+      console.log(randomIndex);
     }
     this.cards = shuffledCards;
     console.log(this.cards);

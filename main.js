@@ -17,6 +17,8 @@ for (var i = 0; i < allCards.length; i++) {
 function cardPageLoad() {
   showCardPage();
   instantiateCardsAndDeck();
+  updateShuffledCards();
+  console.log();
   startTimer();
 };
 
@@ -36,9 +38,6 @@ function calculateElapsedTime() {
   console.log(totalMin, totalSec);
   elapsedTimeMin.innerHTML = totalMin;
   elapsedTimeSec.innerHTML = totalSec;
-  // innerHTML1 -> totalMin
-  // innerHTML2 -> totalSec
-
 }
 
 function cardNotAlreadySelected(selectedCardId) {
@@ -54,6 +53,7 @@ function clickCard() {
   })
   var cardPic = selectedCard.matchInfo;
   if (deck.selectedCards.length < 2) {
+    console.log(selectedCard);
     if (cardNotAlreadySelected(selectedCardElementId)) {
       deck.selectedCards.push(selectedCard);
     } else {
@@ -83,13 +83,21 @@ function instantiateCardsAndDeck() {
   }
 
   deck = new Deck({cards: deckArr});
-  deck.shuffle(deckArr);
+  // deck = deck.shuffle(deckArr);
+  createCard(deck.cards);
+  // create and call function that creates cards via innerHTML, passing deck.cards for all the info
 };
 
+function createCard(cardInfo) {
+  
+}
 
-function showShuffledCards(array) {
-
-
+function updateShuffledCards() {
+  var unshuffledCards = document.querySelectorAll('.card-img');
+  for (var i = 0; i < unshuffledCards.length; i++) {
+    unshuffledCards[i].dataset.id.innerHTML = deck.cards[i]; // nested loop?
+  }
+  console.log(unshuffledCards);
   // for each card in deck.shuffled cards, find id
   // replace
 }
