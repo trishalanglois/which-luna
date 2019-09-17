@@ -275,7 +275,7 @@ p {
     ". congrats congrats congrats ."
     ". time time time ."
     ". keep-playing keep-playing keep-playing ."
-    ". new-game . rematch .";
+    ". new-game new-game new-game .";
   background: url('images/background.jpg') center center;
   background-size: cover;
   position: absolute;
@@ -301,10 +301,6 @@ p {
 
 .new-game-btn {
   grid-area: new-game;
-}
-
-.rematch-btn {
-  grid-area: rematch;
 }
 
 .hide {

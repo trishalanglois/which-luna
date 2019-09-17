@@ -11,8 +11,7 @@ var rematchBtn = document.querySelector('.rematch-btn');
 
 playGameBtn1.addEventListener('click', showRulePage);
 playGameBtn2.addEventListener('click', cardPageLoad);
-newGameBtn.addEventListener('click', newGame)
-
+newGameBtn.addEventListener('click', startNewGame);
 
 for (var i = 0; i < allCards.length; i++) {
   allCards[i].addEventListener('click', clickCard);
@@ -22,12 +21,11 @@ function cardPageLoad() {
   showCardPage();
   instantiateCardsAndDeck();
   updateShuffledCards();
-  console.log();
   startTimer();
 };
 
-function newGame() {
-  document.location.reload(false);
+function startNewGame() {
+  document.location.reload();
 }
 
 function startTimer() {
