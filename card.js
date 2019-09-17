@@ -1,11 +1,11 @@
 class Card {
   constructor(obj) {
-    this.matchInfo = obj.matchInfo; //img src
+    this.matchInfo = obj.matchInfo;
     this.matched = false;
     this.id = obj.id;
 
   }
-  match() { //2
+  match() { 
     this.matched = true;
     deck.moveToMatched(this);
   }

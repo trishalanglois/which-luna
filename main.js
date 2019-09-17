@@ -91,7 +91,6 @@ function clickCard() {
       addWinnerToArray();
       sortWinners();
       pushWinnersToStorage(winners)
-
     }
   } else if (!cardNotAlreadySelected(selectedCardElementId)) {
     toggleImage(cardPic);
