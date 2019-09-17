@@ -20,6 +20,8 @@ class Deck {
       for (var i = 0; i < this.selectedCards.length; i++) {
         this.selectedCards[i].match();
       }
+    } else {
+      setTimeout(changeToCardBack, 3000);
     }
   }
 

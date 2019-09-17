@@ -53,13 +53,14 @@ function clickCard() {
   })
   var cardPic = selectedCard.matchInfo;
   if (deck.selectedCards.length < 2) {
-    console.log(selectedCard);
+    // console.log(selectedCard);
     if (cardNotAlreadySelected(selectedCardElementId)) {
       deck.selectedCards.push(selectedCard);
     } else {
       removeCardFromSelectedArr(selectedCard);
     }
     toggleImage(cardPic);
+    // debugger;
     if (deck.selectedCards.length === 2) {
       deck.checkSelectedCards();
       updateGuessedCardsOnDOM();
@@ -126,10 +127,25 @@ function showRulePage() {
 function toggleImage(picture) {
   if (event.target.src.match('images/L.jpg')) {
     event.target.src = picture;
-  } else {
-    event.target.src = 'images/L.jpg';
+    event.target.classList.add('card-flip');
   }
+  // else {
+  //   event.target.src = 'images/L.jpg';
+  // }
 };
+
+function changeToCardBack() {
+  // console.log(deck.selectedCards);
+  // debugger;
+  // console.log('hi');
+  for (var i = 0; i < deck.selectedCards.length; i++) {
+    var cardToFlipBack = Array.from(allCards).find(function(card) {
+      return card.dataset.id === deck.selectedCards[i].id;
+    })
+    cardToFlipBack.src = 'images/L.jpg';
+  }
+  deck.selectedCards = [];
+}
 
 function updateGuessedCardsOnDOM() {
   if (deck.matchedCards.length === 2) {
@@ -137,9 +153,9 @@ function updateGuessedCardsOnDOM() {
       document.querySelector(`[data-id='${deck.matchedCards[i].id}']`).style.visibility='hidden';
     }
     deck.matchedCards = [];
-    deck.selectedCards = [];
     var player1Matches = document.querySelector('#player-1-matches');
     player1Matches.innerText = deck.matches.length;
+    deck.selectedCards = [];
   }
   // KEEP THE NEXT TWO LINES -- WILL AUTOMATE THE CARDS TO SHOW L PICTURE AGAIN WITHOUT USER CLICKING
   // for (var i = 0; i < deck.selectedCards.length; i++) {

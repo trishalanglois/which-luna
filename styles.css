@@ -199,6 +199,11 @@ p {
   height: 40%;
   width: 20%;
   border: 2px solid #000;
+  transition: transform 0.8s;
+}
+
+.card-flip {
+  transform: rotateY(360deg);
 }
 
 .card-row {
