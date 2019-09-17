@@ -10,6 +10,7 @@ var playGameBtn2 = document.querySelector('#play-game-btn2');
 var rematchBtn = document.querySelector('.rematch-btn');
 var rulePage = document.querySelector('.rule-page');
 var startTime = Date.now()
+var winnerBar = document.querySelector('.winner-bar');
 var winners = getWinnerFromStorage() || [];
 
 function getWinnerFromStorage() {
@@ -98,6 +99,13 @@ function clickCard() {
   }
 };
 
+function getWinnersFromArr() {
+  console.log(winners);
+  for (var i = 0; i < winners.length; i++) {
+    showPastWinners(winners[i])
+  }
+};
+
 function instantiateCardsAndDeck() {
   var deckArr = [];
   for (var i = 0; i < allCards.length; i++) {
@@ -110,7 +118,7 @@ function instantiateCardsAndDeck() {
 };
 
 function pushWinnersToStorage(array) {
-  JSON.stringify(localStorage.setItem("winner-array", array));
+  localStorage.setItem("winner-array", JSON.stringify(array));
 };
 
 function removeCardFromSelectedArr(card) {
@@ -132,6 +140,16 @@ function showCongratsPage() {
   var congratsPage = document.querySelector('.congrats-page');
   cardPage.classList.add('hide');
   congratsPage.classList.remove('hide');
+};
+
+function showPastWinners(object) {
+  console.log(object);
+  winnerBar.innerHTML = `
+  <article class='winner-box'>
+  <p class='player1-name' id='winner-box-name'>${object.name}</p>
+  <br>
+  <p class='winning-time'>${object.time}</p>
+  </article>`
 };
 
 function showRulePage() {
@@ -174,12 +192,13 @@ function toggleImage(picture) {
 
 function toggleWinnerBar() {
   console.log('button test');
-  var winnerBar = document.querySelector('.winner-bar');
   if (winnerBar.classList.contains('hide')) {
     winnerBar.classList.remove('hide');
+    getWinnersFromArr();
   } else {
     winnerBar.classList.add('hide');
   }
+
 };
 
 function updateGuessedCardsOnDOM() {
