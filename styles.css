@@ -202,6 +202,46 @@ p {
   transition: transform 0.8s;
 }
 
+#card-1 {
+  transform: rotate(-27deg);
+}
+
+#card-2 {
+  transform: rotate(10deg);
+}
+
+#card-3 {
+
+}
+
+#card-4 {
+  transform: rotate(5deg);
+}
+
+#card-5 {
+  transform: rotate(-16deg);
+}
+
+#card-6 {
+  transform: rotate(-3deg);
+}
+
+#card-7 {
+  transform: rotate(5deg);
+}
+
+#card-8 {
+  transform: rotate(-3deg);
+}
+
+#card-9 {
+  transform: rotate(-27deg);
+}
+
+#card-10 {
+  transform: rotate(-3deg);
+}
+
 .card-flip {
   transform: rotateY(360deg);
 }
@@ -257,8 +297,6 @@ p {
 .rematch-btn {
   grid-area: rematch;
 }
-
-
 
 .hide {
   display: none;

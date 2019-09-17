@@ -53,14 +53,12 @@ function clickCard() {
   })
   var cardPic = selectedCard.matchInfo;
   if (deck.selectedCards.length < 2) {
-    // console.log(selectedCard);
     if (cardNotAlreadySelected(selectedCardElementId)) {
       deck.selectedCards.push(selectedCard);
     } else {
       removeCardFromSelectedArr(selectedCard);
     }
     toggleImage(cardPic);
-    // debugger;
     if (deck.selectedCards.length === 2) {
       deck.checkSelectedCards();
       updateGuessedCardsOnDOM();
@@ -129,15 +127,9 @@ function toggleImage(picture) {
     event.target.src = picture;
     event.target.classList.add('card-flip');
   }
-  // else {
-  //   event.target.src = 'images/L.jpg';
-  // }
 };
 
 function changeToCardBack() {
-  // console.log(deck.selectedCards);
-  // debugger;
-  // console.log('hi');
   for (var i = 0; i < deck.selectedCards.length; i++) {
     var cardToFlipBack = Array.from(allCards).find(function(card) {
       return card.dataset.id === deck.selectedCards[i].id;
@@ -158,8 +150,4 @@ function updateGuessedCardsOnDOM() {
     player1Matches.innerText = deck.matches.length;
     deck.selectedCards = [];
   }
-  // KEEP THE NEXT TWO LINES -- WILL AUTOMATE THE CARDS TO SHOW L PICTURE AGAIN WITHOUT USER CLICKING
-  // for (var i = 0; i < deck.selectedCards.length; i++) {
-  //   document.querySelector(`[data-id='${deck.selectedCards[i].id}']`).src='images/L.jpg';
-  // }
 };
