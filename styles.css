@@ -20,28 +20,29 @@ body {
 
 nav {
   height: 75px;
-  /* box-shadow: 0 8px 6px -6px #fff; */
 }
 
+/* NAV BAR FOR ALL PAGES */
 #nav-btn {
   background: url('images/nav-button.png') no-repeat;
+  background-size: cover;
   float: left;
   height: 7em;
-  width: 7em;
   margin: -2px;
-  background-size: cover;
+  width: 7em;
 }
 
 #which-luna {
-  text-align: center;
-  padding: 25px;
   margin: -2px -2px -20px -2px;
+  padding: 25px;
+  text-align: center;
 
 }
 
 .winner-bar {
   align-items: center;
   background-color: #000;
+  border: 2px solid #fff;
   color: #fff;
   display: block;
   display: flex;
@@ -50,13 +51,13 @@ nav {
   margin: 0px;
   position: absolute;
   width: 100%;
-  /* z-index: 1; */
+  z-index: 1;
 }
 
 .winner-box {
+  border-radius: 30%;
   border: 3px solid #fff;
   padding: 3em;
-  border-radius: 30%;
   text-align: center;
 }
 
@@ -74,27 +75,27 @@ h1 {
   margin-bottom: 1em;
 }
 
+/* MAIN */
 .first-page {
-  display: grid;
-  height: 100%;
-  width: 100%;
-  grid-template-columns: 1fr 1.5fr .5fr 1.5fr 1fr;
-  grid-template-rows: 3fr 1.5fr 1.2fr 1fr 3fr;
-  grid-template-areas:
-    ". error . . ."
-    ". player1 . player2 ."
-    ". . . . ."
-    ". playgame playgame playgame ."
-    ". . . . .";
   background: url('images/background.jpg') center center;
   background-size: cover;
-  /* position: absolute; */
+  display: grid;
+  grid-template-areas:
+  ". error . . ."
+  ". player1 . player2 ."
+  ". . . . ."
+  ". playgame playgame playgame ."
+  ". . . . .";
+  grid-template-columns: 1fr 1.5fr .5fr 1.5fr 1fr;
+  grid-template-rows: 3fr 1.5fr 1.2fr 1fr 3fr;
+  height: 100%;
+  width: 100%;
 }
 
 .error-msg-container {
-  grid-area: error;
-  display: flex;
   align-items: flex-end;
+  display: flex;
+  grid-area: error;
 }
 
 .player-container {
@@ -118,80 +119,77 @@ h1 {
 }
 
 .play-game-btn {
-  grid-area: playgame;
-  height: 50px;
   background-color: #000;
   color: #fff;
   font-size: 1.25em;
+  grid-area: playgame;
+  height: 50px;
   margin-top: 3em;
 }
 
 .input-name {
-  width: 100%;
-  height: 40px;
   font-size: 1.5em;
+  height: 40px;
   margin: 2% 0;
+  width: 100%;
 }
 
 p {
   font-size: 1.5em;
 }
 
-/* SECOND SCREEN */
-
+/* RULES */
 .rule-page {
+  background: url('images/background.jpg') center center;
+  background-size: cover;
   display: grid;
-  height: 100%;
-  width: 100%;
   grid-template-columns: 1fr 2fr 1fr;
   grid-template-rows: 3fr 1.5fr 1.2fr 1fr 3fr;
   grid-template-areas:
     " . text . ";
-  background: url('images/background.jpg') center center;
-  background-size: cover;
-  position: absolute;
+  height: 100%;
+  width: 100%;
 }
 
 .rules-text {
-  margin-top: 15%;
   grid-area: text;
+  margin-top: 15%;
   width: 100%;
 }
 
 .play-game-btn {
-  height: 50px;
   background-color: #000;
   color: #fff;
   font-size: 1.25em;
+  height: 50px;
   margin-top: 3em;
   width: 100%;
 }
 
-/* THIRD SCREEN */
+/* CARDS */
 .card-page {
+  color: #fff;
   display: grid;
-  height: 100%;
-  width: 100%;
+  font-size: .8em;
+  grid-template-columns: 1fr 3fr 1fr;
   grid-template-areas:
     "leftcolumn cards rightcolumn";
-  grid-template-columns: 1fr 3fr 1fr;
-  color: #fff;
-  font-size: .8em;
-  position: absolute;
+  height: 100%;
+  width: 100%;
 }
 
 #card-container {
-  grid-area: cards;
   background-color: #F2F2F2;
+  grid-area: cards;
 }
 
 .player-column {
   background-color: #000;
-  height: 100%;
-  text-align: center;
   display: flex;
   flex-direction: column;
+  height: 100%;
   justify-content: flex-start;
+  text-align: center;
 }
 
 .aside-first-box,
@@ -201,8 +199,8 @@ p {
   }
 
 .third-page-text {
-  margin: 2.5%;
   font-weight: lighter;
+  margin: 2.5%;
 }
 
 .third-page-number {
@@ -229,10 +227,10 @@ p {
 }
 
 .card-img {
-  height: 40%;
-  width: 20%;
   border: 2px solid #000;
+  height: 40%;
   transition: transform 0.8s;
+  width: 20%;
 }
 
 #card-1 {
@@ -297,35 +295,35 @@ p {
   padding: 3%;
 }
 
-/* FOURTH SCREEN */
+/* CONGRATULATIONS */
 .congrats-page {
+  background: url('images/background.jpg') center center;
+  background-size: cover;
   display: grid;
-  height: 100%;
-  width: 100%;
-  grid-template-columns: 1fr 1.5fr .5fr 1.5fr 1fr;
-  grid-template-rows: 1fr .5fr .5fr 1fr 1fr;
   grid-template-areas:
     ". . . . ."
     ". congrats congrats congrats ."
     ". time time time ."
     ". keep-playing keep-playing keep-playing ."
     ". new-game new-game new-game .";
-  background: url('images/background.jpg') center center;
-  background-size: cover;
+  grid-template-columns: 1fr 1.5fr .5fr 1.5fr 1fr;
+  grid-template-rows: 1fr .5fr .5fr 1fr 1fr;
+  height: 100%;
   position: absolute;
+  width: 100%;
 }
 
 .congratulations {
-  grid-area: congrats;
-  font-size: 3em;
   color: #000;
+  font-size: 3em;
+  grid-area: congrats;
   text-align: center;
 }
 
 .time-of-game {
+  font-weight: bold;
   grid-area: time;
   text-align: center;
-  font-weight: bold;
 }
 
 .keep-playing-msg {

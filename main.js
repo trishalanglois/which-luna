@@ -10,11 +10,12 @@ var playGameBtn2 = document.querySelector('#play-game-btn2');
 var rematchBtn = document.querySelector('.rematch-btn');
 var rulePage = document.querySelector('.rule-page');
 var startTime = Date.now()
+var winners = getWinnerFromStorage() || [];
 
 function getWinnerFromStorage() {
   if ("winner-array" in localStorage)
   return JSON.parse(localStorage.getItem("winner-array"));
-}
+};
 
 playGameBtn1.addEventListener('click', showRulePage);
 playGameBtn2.addEventListener('click', cardPageLoad);
@@ -32,23 +33,11 @@ function cardPageLoad() {
   startTimer();
 };
 
-function startNewGame() {
-  document.location.reload();
-}
-
-function toggleWinnerBar() {
-  console.log('button test');
-  var winnerBar = document.querySelector('.winner-bar');
-  if (winnerBar.classList.contains('hide')) {
-    winnerBar.classList.remove('hide');
-  } else {
-    winnerBar.classList.add('hide');
-  }
+function addWinnerToArray() {
+  var winner = ({name: localStorage.getItem("playerName"), time: elapsedTime});
+  winners.push(winner);
+  console.log(winners);
 };
-
-function startTimer() {
-  var startTime = Date.now();
-}
 
 function calculateElapsedTime() {
   var endTime = Date.now();
@@ -60,12 +49,23 @@ function calculateElapsedTime() {
   var elapsedTimeSec = document.querySelector('.elapsed-time-sec');
   elapsedTimeMin.innerHTML = totalMin;
   elapsedTimeSec.innerHTML = totalSec;
-}
+};
 
 function cardNotAlreadySelected(selectedCardId) {
   return !deck.selectedCards.some(function(previousCard) { //return boolean value
     return previousCard.id === selectedCardId;
   })
+};
+
+function changeToCardBack() {
+  for (var i = 0; i < deck.selectedCards.length; i++) {
+    var cardToFlipBack = Array.from(allCards).find(function(card) {
+      return card.dataset.id === deck.selectedCards[i].id;
+    })
+    cardToFlipBack.src = 'images/L.jpg';
+    cardToFlipBack.classList.remove('card-flip');
+  }
+  deck.selectedCards = [];
 };
 
 function clickCard() {
@@ -104,21 +104,24 @@ function instantiateCardsAndDeck() {
   for (var i = 0; i < allCards.length; i++) {
     var card = new Card({id: `${i}`, matchInfo: picturesArr[i]});
     deckArr.push(card);
-  }
+  };
 
   deck = new Deck({cards: deckArr});
   deck.shuffle(deckArr);
 };
 
-function updateShuffledCards() {
-  for (var i = 0; i < allCards.length; i++) {
-    allCards[i].dataset.id = deck.cards[i].id;
-  }
-}
+function pushWinnersToStorage(array) {
+  JSON.stringify(localStorage.setItem("winner-array", array));
+};
 
 function removeCardFromSelectedArr(card) {
   var indexToSplice = deck.selectedCards.indexOf(card);
   deck.selectedCards.splice(indexToSplice, 1);
+};
+
+function sendNameToStorage(name) {
+  var name = name.value.toUpperCase();
+  localStorage.setItem("playerName", name)
 };
 
 function showCardPage() {
@@ -131,26 +134,6 @@ function showCongratsPage() {
   cardPage.classList.add('hide');
   congratsPage.classList.remove('hide');
 };
-
-var winners = getWinnerFromStorage() || [];
-
-function addWinnerToArray() {
-  var winner = ({name: localStorage.getItem("playerName"), time: elapsedTime});
-  winners.push(winner);
-  console.log(winners);
-}
-
-function sortWinners() {
-  winners.sort(function(a, b) {
-    return a.time - b.time;
-  })
-}
-
-function pushWinnersToStorage(array) {
-  JSON.stringify(localStorage.setItem("winner-array", array));
-}
-// push to storage after array is sorted by time
-
 
 function showRulePage() {
   var welcomePage = document.querySelector('.first-page');
@@ -169,10 +152,19 @@ function showRulePage() {
   }
 };
 
-function sendNameToStorage(name) {
-  var name = name.value.toUpperCase();
-  localStorage.setItem("playerName", name)
-}
+function sortWinners() {
+  winners.sort(function(a, b) {
+    return a.time - b.time;
+  })
+};
+
+function startNewGame() {
+  document.location.reload();
+};
+
+function startTimer() {
+  var startTime = Date.now();
+};
 
 function toggleImage(picture) {
   if (event.target.src.match('images/L.jpg')) {
@@ -181,16 +173,15 @@ function toggleImage(picture) {
   }
 };
 
-function changeToCardBack() {
-  for (var i = 0; i < deck.selectedCards.length; i++) {
-    var cardToFlipBack = Array.from(allCards).find(function(card) {
-      return card.dataset.id === deck.selectedCards[i].id;
-    })
-    cardToFlipBack.src = 'images/L.jpg';
-    cardToFlipBack.classList.remove('card-flip');
+function toggleWinnerBar() {
+  console.log('button test');
+  var winnerBar = document.querySelector('.winner-bar');
+  if (winnerBar.classList.contains('hide')) {
+    winnerBar.classList.remove('hide');
+  } else {
+    winnerBar.classList.add('hide');
   }
-  deck.selectedCards = [];
-}
+};
 
 function updateGuessedCardsOnDOM() {
   if (deck.matchedCards.length === 2) {
@@ -201,5 +192,11 @@ function updateGuessedCardsOnDOM() {
     var player1Matches = document.querySelector('#player-1-matches');
     player1Matches.innerText = deck.matches.length;
     deck.selectedCards = [];
+  }
+};
+
+function updateShuffledCards() {
+  for (var i = 0; i < allCards.length; i++) {
+    allCards[i].dataset.id = deck.cards[i].id;
   }
 };
