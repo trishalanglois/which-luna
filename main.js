@@ -122,7 +122,7 @@ function showRulePage() {
     welcomePage.classList.add('hide');
     rulePage.classList.remove('hide');
     for (var i = 0; i < player1nameDisplay.length; i++) {
-      player1nameDisplay[i].innerHTML = player1name.value.toUpperCase();
+      player1nameDisplay[i].innerHTML = localStorage.getItem("playerName");
     }
   } else {
     errorMsg.style.display = 'block';
@@ -130,7 +130,8 @@ function showRulePage() {
 };
 
 function sendNameToStorage(name) {
-  localStorage.setItem("playerName", name.value)
+  var name = name.value.toUpperCase();
+  localStorage.setItem("playerName", name)
 }
 
 function toggleImage(picture) {
