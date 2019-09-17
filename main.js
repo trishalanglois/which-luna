@@ -26,7 +26,6 @@ function cardPageLoad() {
 
 function startNewGame() {
   document.location.reload();
-  // document.querySelector('').placeholder = JSON.parse(localStorage.getItem("playerName"));
 }
 
 function startTimer() {
@@ -119,7 +118,7 @@ function showRulePage() {
   var player1nameDisplay = document.querySelectorAll('.player1-name');
   var errorMsg = document.querySelector('.hide-msg');
   if (player1name.value.length) {
-    sendNameToStorage(player1name.value);
+    sendNameToStorage(player1name);
     welcomePage.classList.add('hide');
     rulePage.classList.remove('hide');
     for (var i = 0; i < player1nameDisplay.length; i++) {
@@ -131,7 +130,7 @@ function showRulePage() {
 };
 
 function sendNameToStorage(name) {
-  localStorage.setItem("playerName", name);
+  localStorage.setItem("playerName", name.value)
 }
 
 function toggleImage(picture) {
