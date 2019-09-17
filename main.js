@@ -144,12 +144,30 @@ function showCongratsPage() {
 
 function showPastWinners(object) {
   console.log(object);
+  var totalSec = object.time / 1000;
+  var totalMin = Math.round(totalSec / 60);
+  var totalSec = Math.round(totalSec % 60);
   winnerBar.innerHTML = `
-  <article class='winner-box'>
-  <p class='player1-name' id='winner-box-name'>${object.name}</p>
-  <br>
-  <p class='winning-time'>${object.time}</p>
-  </article>`
+    <article class='winner-box'>
+    <p class='player1-name' id='high-score'>HIGH SCORE</p>
+    <br>
+    <p class='player1-name' id='winner-box-name'>${object.name}</p>
+    <br>
+    <p class='winning-time'>${totalMin} min. ${totalSec} sec.</p>
+    </article>`
+  // <!-- <p class='winning-time'>${object.time}</p> -->
+};
+
+function calculateElapsedTime() {
+  var endTime = Date.now();
+  elapsedTime = endTime - startTime;
+  var totalSec = elapsedTime / 1000;
+  var totalMin = Math.round(totalSec / 60);
+  var totalSec = Math.round(totalSec % 60);
+  var elapsedTimeMin = document.querySelector('.elapsed-time-min');
+  var elapsedTimeSec = document.querySelector('.elapsed-time-sec');
+  elapsedTimeMin.innerHTML = totalMin;
+  elapsedTimeSec.innerHTML = totalSec;
 };
 
 function showRulePage() {

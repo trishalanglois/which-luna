@@ -57,8 +57,15 @@ nav {
 .winner-box {
   border-radius: 30%;
   border: 3px solid #fff;
-  padding: 3em;
+  height: 10em;
+  padding-top: 2em;
   text-align: center;
+  width: 10em;
+
+}
+
+#high-score {
+  font-size: 1em;
 }
 
 #winner-box-name {
@@ -67,6 +74,7 @@ nav {
 
 .winning-time {
   font-weight: lighter;
+  font-size: 1em;
 }
 
 h1 {
