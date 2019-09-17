@@ -75,31 +75,20 @@ function clickCard() {
 };
 
 function instantiateCardsAndDeck() {
-  var cardsArr = document.querySelectorAll('.card-img');
   var deckArr = [];
-  for (var i = 0; i < cardsArr.length; i++) {
-    var card = new Card({id: cardsArr[i].dataset.id, matchInfo: picturesArr[i]});
+  for (var i = 0; i < allCards.length; i++) {
+    var card = new Card({id: `${i}`, matchInfo: picturesArr[i]});
     deckArr.push(card);
   }
 
   deck = new Deck({cards: deckArr});
-  // deck = deck.shuffle(deckArr);
-  createCard(deck.cards);
-  // create and call function that creates cards via innerHTML, passing deck.cards for all the info
+  deck.shuffle(deckArr);
 };
 
-function createCard(cardInfo) {
-  
-}
-
 function updateShuffledCards() {
-  var unshuffledCards = document.querySelectorAll('.card-img');
-  for (var i = 0; i < unshuffledCards.length; i++) {
-    unshuffledCards[i].dataset.id.innerHTML = deck.cards[i]; // nested loop?
+  for (var i = 0; i < allCards.length; i++) {
+    allCards[i].dataset.id = deck.cards[i].id;
   }
-  console.log(unshuffledCards);
-  // for each card in deck.shuffled cards, find id
-  // replace
 }
 
 function removeCardFromSelectedArr(card) {
