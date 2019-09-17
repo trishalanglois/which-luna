@@ -21,7 +21,7 @@ class Deck {
         this.selectedCards[i].match();
       }
     } else {
-      setTimeout(changeToCardBack, 3000);
+      setTimeout(changeToCardBack, 2000);
     }
   }
 

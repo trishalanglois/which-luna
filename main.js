@@ -143,6 +143,7 @@ function changeToCardBack() {
       return card.dataset.id === deck.selectedCards[i].id;
     })
     cardToFlipBack.src = 'images/L.jpg';
+    cardToFlipBack.classList.remove('card-flip');
   }
   deck.selectedCards = [];
 }
