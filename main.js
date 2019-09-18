@@ -88,6 +88,7 @@ function clickCard() {
       addWinnerToArray();
       sortWinners();
       pushWinnersToStorage(winners);
+      getWinnersFromArr();
     }
   } else if (!cardNotAlreadySelected(selectedCardElementId)) {
     toggleImage(cardPic);
@@ -195,7 +196,6 @@ function sortWinners() {
 
 function startNewGame() {
   document.location.reload();
-  getWinnersFromArr();
 };
 
 function startTimer() {
@@ -215,7 +215,6 @@ function toggleWinnerBar() {
   } else {
     winnerBar.classList.add('hide');
   }
-
 };
 
 function updateGuessedCardsOnDOM() {
