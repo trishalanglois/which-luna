@@ -144,7 +144,7 @@ function showPastWinners(object) {
   var totalSec = object.time / 1000;
   var totalMin = Math.round(totalSec / 60);
   var totalSec = Math.round(totalSec % 60);
-  winnerBar.innerHTML = `
+  winnerBar.innerHTML += `
     <article class='winner-box'>
     <p class='player1-name' id='high-score'>HIGH SCORE</p>
     <br>
@@ -191,6 +191,7 @@ function sortWinners() {
 
 function startNewGame() {
   document.location.reload();
+  getWinnersFromArr();
 };
 
 function startTimer() {
