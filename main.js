@@ -13,10 +13,7 @@ var startTime = Date.now()
 var winnerBar = document.querySelector('.winner-bar');
 var winners = getWinnerFromStorage() || [];
 
-function getWinnerFromStorage() {
-  if ("winner-array" in localStorage)
-  return JSON.parse(localStorage.getItem("winner-array"));
-};
+
 
 playGameBtn1.addEventListener('click', showRulePage);
 playGameBtn2.addEventListener('click', cardPageLoad);
@@ -90,7 +87,7 @@ function clickCard() {
       calculateElapsedTime();
       addWinnerToArray();
       sortWinners();
-      pushWinnersToStorage(winners)
+      pushWinnersToStorage(winners);
     }
   } else if (!cardNotAlreadySelected(selectedCardElementId)) {
     toggleImage(cardPic);
@@ -99,8 +96,15 @@ function clickCard() {
 };
 
 function getWinnersFromArr() {
+  winnerBar.innerHTML = '';
   for (var i = 0; i < winners.length; i++) {
     showPastWinners(winners[i])
+  }
+};
+
+function getWinnerFromStorage() {
+  if ("winner-array" in localStorage) {
+    return JSON.parse(localStorage.getItem("winner-array"));
   }
 };
 
@@ -146,9 +150,9 @@ function showPastWinners(object) {
   var totalSec = Math.round(totalSec % 60);
   winnerBar.innerHTML += `
     <article class='winner-box'>
-    <p class='player1-name' id='high-score'>HIGH SCORE</p>
+    <p class='winner-player1-name' id='high-score'>HIGH SCORE</p>
     <br>
-    <p class='player1-name' id='winner-box-name'>${object.name}</p>
+    <p class='winner-player1-name' id='winner-box-name'>${object.name}</p>
     <br>
     <p class='winning-time'>${totalMin} min. ${totalSec} sec.</p>
     </article>`
@@ -208,7 +212,6 @@ function toggleImage(picture) {
 function toggleWinnerBar() {
   if (winnerBar.classList.contains('hide')) {
     winnerBar.classList.remove('hide');
-    getWinnersFromArr();
   } else {
     winnerBar.classList.add('hide');
   }
@@ -232,3 +235,5 @@ function updateShuffledCards() {
     allCards[i].dataset.id = deck.cards[i].id;
   }
 };
+
+getWinnersFromArr();
