@@ -37,7 +37,6 @@ function cardPageLoad() {
 function addWinnerToArray() {
   var winner = ({name: localStorage.getItem("playerName"), time: elapsedTime});
   winners.push(winner);
-  console.log(winners);
 };
 
 function calculateElapsedTime() {
@@ -100,7 +99,6 @@ function clickCard() {
 };
 
 function getWinnersFromArr() {
-  console.log(winners);
   for (var i = 0; i < winners.length; i++) {
     showPastWinners(winners[i])
   }
@@ -143,7 +141,6 @@ function showCongratsPage() {
 };
 
 function showPastWinners(object) {
-  console.log(object);
   var totalSec = object.time / 1000;
   var totalMin = Math.round(totalSec / 60);
   var totalSec = Math.round(totalSec % 60);
@@ -155,7 +152,6 @@ function showPastWinners(object) {
     <br>
     <p class='winning-time'>${totalMin} min. ${totalSec} sec.</p>
     </article>`
-  // <!-- <p class='winning-time'>${object.time}</p> -->
 };
 
 function calculateElapsedTime() {
@@ -209,7 +205,6 @@ function toggleImage(picture) {
 };
 
 function toggleWinnerBar() {
-  console.log('button test');
   if (winnerBar.classList.contains('hide')) {
     winnerBar.classList.remove('hide');
     getWinnersFromArr();
