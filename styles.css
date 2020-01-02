@@ -91,7 +91,7 @@ h1 {
   display: grid;
   grid-template-areas:
   ". error . . ."
-  ". player1 . player2 ."
+  ". player1 player1 player1 ."
   ". . . . ."
   ". playgame playgame playgame ."
   ". . . . .";

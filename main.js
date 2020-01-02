@@ -159,18 +159,6 @@ function showPastWinners(object) {
     </article>`
 };
 
-function calculateElapsedTime() {
-  var endTime = Date.now();
-  elapsedTime = endTime - startTime;
-  var totalSec = elapsedTime / 1000;
-  var totalMin = Math.round(totalSec / 60);
-  var totalSec = Math.round(totalSec % 60);
-  var elapsedTimeMin = document.querySelector('.elapsed-time-min');
-  var elapsedTimeSec = document.querySelector('.elapsed-time-sec');
-  elapsedTimeMin.innerHTML = totalMin;
-  elapsedTimeSec.innerHTML = totalSec;
-};
-
 function showRulePage() {
   var welcomePage = document.querySelector('.first-page');
   var player1name = document.querySelector('.player1-name-input');
