@@ -90,13 +90,13 @@ h1 {
   background-size: cover;
   display: grid;
   grid-template-areas:
-  ". error . . ."
-  ". player1 player1 player1 ."
-  ". . . . ."
-  ". playgame playgame playgame ."
+  ". . error . ."
+  ". . player1 . ."
+  /* ". . . . ." */
+  ". . playgame . ."
   ". . . . .";
-  grid-template-columns: 1fr 1.5fr .5fr 1.5fr 1fr;
-  grid-template-rows: 3fr 1.5fr 1.2fr 1fr 3fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 3fr 1.5fr 1.5fr 5fr;
   height: 100%;
   width: 100%;
 }
